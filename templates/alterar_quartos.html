@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Quartos</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='ypuiú.png') }}" alt="Logo resenhas">
+                <h1 class="marrom">Pousada Quinta do Ypuã </h1>
+            </div>
+            <ul class="nav-links">
+                <li class="btn-entrar"> <a href="{{url_for('home') }}">Home</a></li>
+
+            </ul>
+            {% if 'usuario' not in session %}
+            <a class="btn-entrar" href="{{ url_for('usuarios.login_usuario') }}">Entrar</a>
+            {% else %}
+           
+            <a href="{{ url_for('usuarios.logout') }}"class="btn-entrar">Sair</a>
+            <a href="{{ url_for('quartos.criar_quartos') }}" class="btn-entrar">Novo</a>
+           
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+       
+        <div class="alterar">
+            <h2 class="brancoo">Alterar Quarto</h2>
+            <form action="{{ url_for('quartos.alterar_quarto', id=quarto['id_quarto']) }}" method="post">
+                <div class="um">
+                    <label class="branco" for="nome">Nome:</label>
+                    <input class="two" type="text" id="nome" name="NOME" value="{{ quarto.nome }}" required>
+                </div>
+                <div class="um">
+                    <label class="branco" for="numero">Número:</label>
+                    <input class="two" type="number" id="numero" name="NUMERO" value="{{ quarto.numero }}" required>
+                </div>
+                <div class="um">
+                    <label class="branco" for="cama_solteiro">Cama de solteiro:</label>
+                    <input class="two" type="text" id="cama_solteiro" name="CAMA_SOLTEIRO" value="{{ quarto.cama_solteiro }}">
+                </div>
+                <div class="um">
+                    <label class="branco" for="cama_casal">Cama de casal:</label>
+                    <input class="two" type="text" id="cama_casal" name="CAMA_CASAL" value="{{ quarto.cama_casal }}">
+                </div>
+                <div class="um">
+                    <label class="branco" for="descricao">Descrição:</label>
+                    <input class="for" type="text" id="descricao" name="DESCRICAO" value="{{ quarto.descricao }}">
+                </div>
+                <div class="um">
+                    <label class="branco" for="preco">Preço:</label>
+                    <input class="two" type="text" id="preco" name="PRECO" value="{{ quarto.preco }}">
+                </div>
+                <div class="um">
+                    <label class="branco" for="imagem">Imagem:</label>
+                    <input class="two" type="text" id="imagem" name="IMAGEM" value="{{ quarto.imagem }}">
+                </div>
+                <div class="form-group">
+                    <img src="{{ quarto.imagem }}" alt="Imagem do quarto" style="width: 100px; height: 100px;">
+                </div>
+            
+              
+                <button type="submit" class="btn-tres" id="salvar">Salvar</button>
+            </form>
+            
+        </div>
+    </main>
+</body>
+</html>

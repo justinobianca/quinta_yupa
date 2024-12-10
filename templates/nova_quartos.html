@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Quartos</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='ypuiú.png') }}" alt="Logo">
+                <h1 class="marrom">Pousada Quinta do Ypuã</h1>
+            </div>
+            <ul>
+                <li class="branco"><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="branco"><a href="#">Livros</a></li>
+            </ul>
+             
+            {% if 'usuario' not in session %}
+                <a href="{{ url_for('usuarios.login_usuario') }}" class="btn-entrar">Entrar</a>
+            {% else %}
+                <a class="btn-dois" href="{{ url_for('usuarios.logout') }}">Sair</a>
+                <a class="btn-dois" href="#">Reserve já</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <div class="bi">
+            <h2 class="tree">Cadastro de Quartos</h2>
+            <form action="{{ url_for('quartos.criar_quartos') }}" method="post">
+                <div class="um">
+                    <label class="branco" for="nome">Nome:</label>
+                    <input class="two" type="text" id="nome" name="NOME" required>
+                </div>
+
+                <div class="um">
+                    <label class="branco" for="numero">Número:</label>
+                    <input class="two" type="number" id="numero" name="NUMERO" required>
+                </div>
+
+                <div class="um">
+                    <label class="branco" for="cama_solteiro">Cama de solteiro:</label>
+                    <input class="two" type="number" id="cama_solteiro" name="CAMA_SOLTEIRO" required>
+                </div>
+
+                <div class="um">
+                    <label class="branco" for="cama_casal">Cama de casal:</label>
+                    <input class="two" type="number" id="cama_casal" name="CAMA_CASAL" required>
+                </div>
+
+                <div class="um">
+                    <label class="branco" for="descricao">Descrição:</label>
+                    <input class="for" type="text" id="descricao" name="DESCRICAO" required>
+                </div>
+
+                <div>
+                    <label class="branco" for="preco">Preço:</label>
+                    <input class="mi" type="text" id="preco" name="PRECO" required>
+                </div>
+
+                <div>
+                    <label class="branco" for="imagem">Foto:</label>
+                    <input class="mi" type="text" id="imagem" name="IMAGEM" required>
+                </div>
+
+                <button class="btn-tres" type="submit">Cadastrar Quarto</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

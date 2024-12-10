@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='ypuiú.png') }}" alt="Logo resenhas">
+                <h1 class="marrom">Pousada Quinta do Ypuã</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{url_for('home') }}" class="btn-entrar">Home</a></li>
+            </ul>
+           
+
+            {% if 'usuario' not in session %}
+            <a href="{{url_for('usuarios.login_usuario') }}" class="btn-entrar">Entrar</a>
+            {% else %}
+                {% if session['usuario']['tipo'] == 'funcionario' %}
+                    <a href="{{url_for('usuarios.logout') }}" class="btn-dois">Sair</a>
+                    <a href="{{url_for('quartos.criar_quartos') }}" class="btn-entrar">Novo Quarto</a>
+                    {% else %}
+                    <a href="{{url_for('usuarios.logout') }}" class="btn-dois">Sair</a>
+                {% endif %}
+
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <hr>
+        <div class="en">
+            <p class="texto">CONHEÇA NOSSAS ACOMODAÇÕES</p>
+            <img class="nossas"
+                src="https://pousada-quinta-do-ypua.hoteis-em-suldobrasil.com/data/Images/OriginalPhoto/9670/967054/967054075/image-laguna-pousada-quinta-do-ypua-35.JPEG"
+                alt="">
+        </div>
+
+        <hr>
+        <p class="acomodações">Nossas acomodações</p>
+
+        <div class="un">
+            {% for quarto in quartos %}
+            <div class="room-container">
+                <img class="room-image" src="{{quarto.imagem }}" alt="Room Image">
+                <div class="room-description">
+                    <p class="fff">{{quarto.nome }}</p>
+                    <p class="ffff">Número: {{quarto.numero }}</p>
+                    <p class="ffff">Cama Solteiro: {{quarto.cama_solteiro }}</p>
+                    <p class="ffff">Cama Casal: {{quarto.cama_casal }}</p>
+                    <p class="fff">Preço: R$ {{quarto.preco }}</p>
+                    <p class="ffff">Descrição: {{quarto.descricao }}</p>
+                    <a class="btn-entrar" href="{{ url_for('detalhes.detalhes_quarto', id=quarto['id_quarto']) }}">Mais informações</a>
+        
+                    {% if session['usuario']['tipo'] == 'funcionario' %}
+                   
+                    <div class="um">
+                        <a class="btn-entrarr" href="{{ url_for('quartos.alterar_quarto', id=quarto['id_quarto']) }}">Editar</a>
+                        <a class="btn-entrarr" href="{{ url_for('quartos.excluir_quarto', id=quarto['id_quarto']) }}">Excluir</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </main>
+</body>
+
+</html>
+
+
+

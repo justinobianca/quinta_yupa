@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pousada Quinta do Ypuã</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Estilo para o splash screen */
+        .splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #d5c6a4; /* Cor de fundo do splash screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        .logo-container img {
+            width: 200px; /* Tamanho do logo */
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Estilos adicionais para o site */
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #345d3f; /* Cor de fundo geral */
+        }
+
+        header {
+            background-color: #d5c6a4;
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+           border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .marrom {
+            color: #493614;
+            margin-left: 10px;
+            font-size: 1.5em;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links li a, .btn-entrar {
+            text-decoration: none;
+            color: #fff;
+            background-color: #493614;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links li a:hover, .btn-entrar:hover {
+            background-color: #493614;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        ul li {
+            background-color: #2c4f3e;
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: left;
+        }
+
+        ul li img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .iris {
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .carousel {
+            max-width: 1094px;
+            max-height: 748px;
+            overflow: hidden;
+            margin: 20px auto;
+            display: flex;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            width: 1094px;
+            height: 748px;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer Styles */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-top: 1px solid #CCC;
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            font-size: 0.9em;
+            background-color: #345d3f;
+            border-radius: 10px;
+        }
+
+        .contact-info {
+            text-align: left;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .subscribe {
+            text-align: right;
+        }
+
+        .subscribe input[type="email"] {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+        }
+
+        .subscribe button {
+            background-color: #fff;
+            color: #345d3f;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 5px;
+        }
+
+        .subscribe button:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Estilo para o formulário */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"], input[type="email"] {
+            padding: 10px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button[type="submit"], .btn-tres {
+            background-color: #a0522d;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover, .btn-tres:hover {
+            background-color: #8b4513;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .carousel {
+                max-width: 100%;
+                max-height: 400px;
+            }
+
+            ul li {
+                width: 90%;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='ypuiú.png') }}" alt="Logo da Pousada">
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='ypuiú.png') }}" alt="Logo quartos">
+                <h1 class="marrom">Pousada Quinta do Ypuã</h1>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="btn-entrar"><a href="{{ url_for('usuarios.criar_usuarios') }}">Cadastra-se</a></li>
+            </ul>
+
+            {% if 'usuario' not in session %}
+                <a href="{{ url_for('usuarios.login_usuario') }}" class="btn-entrar">Entrar</a>
+            {% else %}
+                <a href="{{ url_for('usuarios.logout') }}" class="btn-entrar">Sair</a>
+                <a href="{{ url_for('quartos.nova_quartos') }}" class="btn-entrar">Add Quarto</a>
+                <a href="{{ url_for('reservas.nova_reserva') }}" class="btn-entrar">Faça sua reserva</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% if 'usuario' in session %}
+            <ul>
+                {% for quarto in quartos %}
+                    <li>
+                        <img src="{{ quarto.imagem }}" alt="Imagem do quarto" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div>
+                            <h3>{{ quarto.nome }}</h3>
+                            <p>Número: {{ quarto.numero }}</p>
+                            <p>Cama de Solteiro: {{ quarto.cama_solteiro }}</p>
+                            <p>Cama de Casal: {{ quarto.cama_casal }}</p>
+                            <p>Descrição: {{ quarto.descricao }}</p>
+                            <p>Preço: R$ {{ quarto.preco }}</p>
+                            <a href="{{ url_for('quartos.alterar_quarto', id=quarto.id_quarto) }}" class="btn-tres">Editar</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="iris">Seja-bem-vindo à Pousada Quinta do Ypuã <a class="iris" href="{{ url_for('usuarios.login_usuario') }}">Faça login</a> e depois faça sua reserva</p>
+        {% endif %}
+
+        <!-- Carrossel de Imagens -->
+        <div class="carousel">
+            <div class="slides">
+                <div class="slide"><img src="https://pousada-quinta-do-ypua.hoteis-em-suldobrasil.com/data/Images/OriginalPhoto/9691/969103/969103828/image-laguna-pousada-quinta-do-ypua-8.JPEG" alt="Imagem 1"></div>
+                <div class="slide"><img src="https://pousada-quinta-do-ypua.hoteis-em-suldobrasil.com/data/Images/OriginalPhoto/4461/446179/446179740/image-laguna-pousada-quinta-do-ypua-41.JPEG" alt="Imagem 2"></div>
+                <div class="slide"><img src="https://pousada-quinta-do-ypua.hoteis-em-suldobrasil.com/data/Images/OriginalPhoto/9670/967054/967054999/image-laguna-pousada-quinta-do-ypua-4.JPEG" alt="Imagem 3"></div>
+                <div class="slide"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/4b/84/d1/getlstd-property-photo.jpg?w=700&h=-1&s=1" alt="Imagem 4"></div>
+            </div>
+        </div>
+
+        <!-- Vídeo do YouTube -->
+        <h1>Bem-vindo, conheça nossa pousada!</h1>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/[VIDEO_ID]" title="Pousada Quinta do Ypuá" allowfullscreen></iframe>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="contact-info">
+            <p>Estrada Ipua, nº 6<br>
+            Andradina - SP | 88790-000<br>
+            (18) 99105-7115 | pousadaquintadoypua@gmail.com</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/?locale=pt_BR" target="_blank">
+                    <img src="https://img.icons8.com/ios-glyphs/30/000000/facebook-new.png" alt="Facebook">
+                </a>
+                <a href="https://www.whatsapp.com/?lang=pt_BR" target="_blank" class="whatsapp-button">
+                    <img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp.png" alt="WhatsApp">
+                    Fale conosco via WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="subscribe">
+            <p>Cadastre-se para receber promoções</p>
+            <form id="subscribe-form" action="https://formspree.io/f/xpwzdavk" method="POST">
+                <input type="email" name="email" placeholder="Insira o seu email aqui" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Splash Screen
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const splash = document.getElementById('splash-screen');
+                splash.style.opacity = 0; // Faz o splash desaparecer
+                splash.style.transition = 'opacity 0.5s ease'; // Transição suave
+                setTimeout(() => splash.remove(), 500); // Remove o elemento após a transição
+            }, 3000); // Tempo do splash screen (3 segundos)
+        });
+
+        // Carrossel de Imagens (Opcional: se desejar adicionar funcionalidade de deslizar)
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        setInterval(() => {
+            slides[currentSlide].style.display = 'none';
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].style.display = 'block';
+        }, 5000); // Troca de slide a cada 5 segundos
+    </script>
+</body>
+</html>

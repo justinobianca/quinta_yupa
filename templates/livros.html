@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{url_for('static', filename='logo.png') }}" alt="Logo Livros">
+                <h1>Meus Quartos</h1>
+            </div>
+            <ul>
+                <li> <a href="{{url_for('home') }}">Home</a></li>
+                <li> <a href="#">quartos</a></li>
+            </ul>
+             
+            {% if 'usuario' not in session%}
+            <a href="{{url_for('usuarios.login_usuario') }}" class="btn-entrar">Entrar</a>
+            {%else%}
+            <a   class="btn-dois " href="{{url_for('usuarios.logout')}}" >Sair</a>
+            <a  class="btn-dois "href="{{url_for('quartos.criar_quartos') }}">Novo</a>
+
+            {% endif %}
+        </nav>
+    </header>
+    <hr>
+    <hr>
+    <hr>
+    <main>
+        <div>
+            <h2 class="iris">Lista de Resenhas</h2>
+            <form action="{{url_for('quartos.listar_quartos') }}" method="get">
+           <input class="redondo" type="text" name="PESQUISAR" placeholder="Titulo ou Autor" required>
+           <button  class="btn-entrar" type="submit">Pesquisar</button>
+            </form>
+        <ul>
+            {% for resenha in quartos %}
+             <li>
+                <img src="{{resenha.imagem}}" alt="" style="width: auto; height: auto;">
+                <div>
+                    <h3 class="azul">{{resenha.titulo}}</h3>
+                    <p class="azul">Autor: {{resenha.autor}}</p>
+                    <p class="azul">Editora: {{resenha.editora}}</p>
+                  <p class="azul">quarto da colecao de {{ resenha.nome_usuario if resenha.nome_usuario else ''}}</p>
+
+                  <a class="azul"    class="btn-entra" href= "{{url_for('quartos.alterar_quartos', id=resenha['id_quartos'])}}" class="btn-primary">Editar</a>
+                  <a class="azul"   class="btn-entra" href="{{url_for('quartos.excluir_quartos', id=resenha['id_quartos'])}}"  class=" btn btn-warning">Excluir</a>
+                </div>
+             </li>
+            {%endfor%}
+           </ul>
+        </div>
+    </main>
+</body>
+</html>

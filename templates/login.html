@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='ypuiú.png') }}" alt="Logo quartos">
+                <h1 class="marrom">Pousada Quinta do Ypuã </h1>
+            </div>
+            <ul class="nav-links">
+                <li  class="btn-entrar"><a href="{{ url_for('home') }}">Home</a></li>
+            </ul>
+           
+
+            <a href="{{url_for('usuarios.criar_usuarios') }}" class="btn-entrar">Entrar</a>
+        </nav>
+    </header>
+    <main>
+        <div class="bii">
+        <div>
+            <h2 class="brancoo"> Login</h2>
+            <form id="loginForm" action="{{ url_for('usuarios.login_usuario') }}" method ="post"> 
+                     
+                <div class="um">
+                    <label  class="branco" for="">Usuario:</label>
+                    <input class="two" type="text"  name="NOME_USUARIO" required>
+                </div>
+
+                <label class="brancoo" for="tipo">Escolha uma opção:</label>
+                <select  class="twoo" id="tipo" name="tipo">
+                    <option class="twoo" value="cliente">Cliente</option>
+                    <option class="twoo" value="funcionario">Funcionario</option>
+                </select>
+        
+                <div class="um">
+                    <label for="Senha"></label>
+                    <label  class="branco" for="senha">Senha:</label>
+                    <input class="two" type="password"  name="SENHA" required>
+                </div>
+
+
+                <button class="btn-dois" type="submit">Entrar</button>
+              <a class="btn-dois" href="{{url_for('usuarios.criar_usuarios') }}">Cadastre-se</a>   
+            </form>
+           
+        </div>
+    </div>
+    
+    </main>
+</body>
+</html>

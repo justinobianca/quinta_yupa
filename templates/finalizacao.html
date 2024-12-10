@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Efetuada</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='ypuiú.png') }}" alt="Logo resenhas">
+                <h1 class="marrom">Pousada Quinta do Ypuã </h1>
+            </div>
+            <ul class="nav-links">
+                <li class="btn-entrar"><a href="{{ url_for('home') }}">Home</a></li>
+
+            </ul>
+
+            {% if 'usuario' not in session%}
+            <a href="{{url_for('usuarios.login_usuario') }}" class="btn-entrar">Entrar</a>
+            {%else%}
+            <a class="btn-dois" href="{{url_for('usuarios.logout')}}">Sair</a>
+            <a class="btn-dois" href="#">Reserve já</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        <hr style="border: 2px solid white;">
+        <div class="en">
+            <p class="texto">
+                CONHEÇA
+                NOSSAS
+                ACOMODAÇÕES
+            </p>
+            <img class="nossas"
+                src="https://pousada-quinta-do-ypua.hoteis-em-suldobrasil.com/data/Images/OriginalPhoto/9670/967054/967054075/image-laguna-pousada-quinta-do-ypua-35.JPEG"
+                alt="">
+
+
+            <main class="row ms-5">
+
+        </div class="centro">
+        <hr style="border: 2px solid white;">
+        </div>
+
+        <body class="cor-fundo">
+            
+            <div class="container">
+                <div class="reserva">
+                    <h1 class="marrun"> Seu quarto ja esta reservado!</h1>
+                    <p class="reserva-numero">Número da sua reserva: <span class="numero">140376</span></p>
+                    <p class="email-confirmacao">Um email de confirmação está a caminho.</p>
+                </div>
+        
+                <div class="horarios">
+                    <p><strong>Hora do check-in:</strong> 14:00</p>
+                    <p><strong>Hora do check-out:</strong> 10:00</p>
+                </div>
+        
+                <div class="detalhes-hotel">
+                    <h2>Detalhes do Hotel</h2>
+                    <p><strong>Número de Telefone:</strong> (48) 99940-9732</p>
+                    <p><strong>Email:</strong> pousadaquintadoypua@gmail.com</p>
+                    <p><strong>Endereço:</strong> Estrada Ipua, nº 6, Laguna, Santa Catarina, Brazil, 88790-000</p>
+                </div>
+            </div>              
+            </div>
+
+            
+
+    </main>
+
+    </main>
+</body>
+
+</html> 
